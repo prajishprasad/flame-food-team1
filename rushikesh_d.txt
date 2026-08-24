@@ -1,0 +1,1 @@
+GO-N3RDet: Geometry Optimized NeRF-enhanced 3D Object Detector 
