@@ -9,7 +9,8 @@ cafes = {
     "Cafe One": ["Coffee", "Sandwich", "Muffin"],
     "Cafe Two": ["Tea", "Burger", "Fries"],
     "Cafe Three": ["Pizza", "Pasta", "Salad"],
-    "Cafe Four": ["Idli", "Dosa", "Filter Coffee"]
+    "Cafe Four": ["Idli", "Dosa", "Filter Coffee"],
+    "Cafe Five": ["Momo", "Chowmein", "Thukpa"]
 }
 
 # Prices for menu items in rupees
@@ -25,7 +26,10 @@ prices = {
     "Salad": 120,
     "Idli": 40,
     "Dosa": 80,
-    "Filter Coffee": 50
+    "Filter Coffee": 50,
+    "Momo": 120,
+    "Chowmein": 150,
+    "Thukpa": 140
 }
 
 @app.route("/")
