@@ -11,6 +11,22 @@ cafes = {
     "Cafe Three": ["Pizza", "Pasta", "Salad"]
 }
 
+# Prices for menu items in rupees
+prices = {
+    "Coffee": 80,
+    "Sandwich": 120,
+    "Muffin": 120,
+    "Tea": 30,
+    "Burger": 150,
+    "Fries": 100,
+    "Pizza": 250,
+    "Pasta": 200,
+    "Salad": 120,
+    "Idli": 40,
+    "Dosa": 80,
+    "Filter Coffee": 50
+}
+
 @app.route("/")
 def home():
     """Show list of cafes"""
@@ -20,7 +36,7 @@ def home():
 def show_cafe(name):
     """Show menu of a cafe"""
     menu = cafes.get(name, [])
-    return render_template("cafe.html", cafe=name, menu=menu)
+    return render_template("cafe.html", cafe=name, menu=menu, prices=prices)
 
 @app.route("/add_to_cart/<cafe>/<item>")
 def add_to_cart(cafe, item):
