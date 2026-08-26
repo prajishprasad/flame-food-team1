@@ -1,1 +1,1 @@
-GO-N3RDet: Geometry Optimized NeRF-enhanced 3D Object Detector 
+RNb-NeuS: Reflectance and Normal-based Multi-View 3D Reconstruction
