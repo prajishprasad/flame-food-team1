@@ -8,7 +8,8 @@ app.secret_key = "supersecretkey"  # Needed for sessions (to store cart data)
 cafes = {
     "Cafe One": ["Coffee", "Sandwich", "Muffin"],
     "Cafe Two": ["Tea", "Burger", "Fries"],
-    "Cafe Three": ["Pizza", "Pasta", "Salad"]
+    "Cafe Three": ["Pizza", "Pasta", "Salad"],
+    "Cafe Five": ["Momo", "Chowmein", "Thukpa"]
 }
 
 # Prices for menu items in rupees
@@ -24,7 +25,10 @@ prices = {
     "Salad": 120,
     "Idli": 40,
     "Dosa": 80,
-    "Filter Coffee": 50
+    "Filter Coffee": 50,
+    "Momo": 120,
+    "Chowmein": 150,
+    "Thukpa": 140
 }
 
 @app.route("/")
