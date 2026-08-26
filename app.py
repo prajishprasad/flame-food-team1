@@ -9,6 +9,7 @@ cafes = {
     "Cafe One": ["Coffee", "Sandwich", "Muffin"],
     "Cafe Two": ["Tea", "Burger", "Fries"],
     "Cafe Three": ["Pizza", "Pasta", "Salad"],
+    "Cafe Four": ["Idli", "Dosa", "Filter Coffee"],
     "Cafe Five": ["Momo", "Chowmein", "Thukpa"]
 }
 
