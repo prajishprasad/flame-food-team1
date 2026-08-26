@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Select a Cafe</h2>
-<ul>
-  {% for cafe in cafes %}
-    <li><a href="{{ url_for('show_cafe', name=cafe) }}">{{ cafe }}</a></li>
-  {% endfor %}
-</ul>
+<div class="page-header">
+    <h1>Pick a cafe</h1>
+    <p>Browse campus spots and build your order.</p>
+</div>
+
+<div class="card-grid">
+    {% for cafe in cafes %}
+        <a class="card cafe-card" href="{{ url_for('show_cafe', name=cafe) }}">
+            <h3>{{ cafe }}</h3>
+            <p>{{ cafes[cafe]|length }} items on the menu</p>
+        </a>
+    {% endfor %}
+</div>
 {% endblock %}

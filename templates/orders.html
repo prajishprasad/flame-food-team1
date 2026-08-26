@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Orders · FLAME Food{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h1>Order history</h1>
+    <p>{% if orders %}Your past orders, newest first.{% else %}Completed orders show up here after checkout.{% endif %}</p>
+</div>
+
+{% if orders %}
+    {% for order in orders|reverse %}
+        <article class="card order-card">
+            <div class="order-card-header">
+                <h3>Order #{{ loop.revindex }}</h3>
+                <span class="order-pill">{{ order["items"]|length }} item{{ "s" if order["items"]|length != 1 else "" }}</span>
+            </div>
+            <ul class="order-items">
+                {% for entry in order["items"] %}
+                    <li>
+                        <strong>{{ entry.item }}</strong>
+                        <span>{{ entry.cafe }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </article>
+    {% endfor %}
+
+    <div class="actions">
+        <a class="btn btn-secondary" href="{{ url_for('home') }}">Order again</a>
+    </div>
+{% else %}
+    <div class="card empty-state">
+        <h3>No orders yet</h3>
+        <p>Add items to your cart and check out to see them here.</p>
+        <a class="btn" href="{{ url_for('home') }}">Browse cafes</a>
+    </div>
+{% endif %}
+{% endblock %}

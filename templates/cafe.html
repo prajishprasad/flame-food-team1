@@ -1,11 +1,24 @@
 {% extends "base.html" %}
+{% block title %}{{ cafe }} · FLAME Food{% endblock %}
 {% block content %}
-<h2>{{ cafe }}</h2>
-<ul>
-  {% for item in menu %}
-    <li>{{ item }} - 
-      <a href="{{ url_for('add_to_cart', cafe=cafe, item=item) }}">Add to cart</a>
-    </li>
-  {% endfor %}
+<div class="page-header">
+    <h1>{{ cafe }}</h1>
+    <p>Tap add to cart when something looks good.</p>
+</div>
+
+<ul class="menu-list">
+    {% for item in menu %}
+        <li class="card menu-item">
+            <div class="menu-item-info">
+                <h3>{{ item }}</h3>
+                <p>Fresh from {{ cafe }}</p>
+            </div>
+            <a class="btn" href="{{ url_for('add_to_cart', cafe=cafe, item=item) }}">Add to cart</a>
+        </li>
+    {% endfor %}
 </ul>
+
+<div class="actions">
+    <a class="btn btn-secondary" href="{{ url_for('home') }}">Back to cafes</a>
+</div>
 {% endblock %}

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 
 # Initialize the app
 app = Flask(__name__)
@@ -10,6 +10,14 @@ cafes = {
     "Cafe Two": ["Tea", "Burger", "Fries"],
     "Cafe Three": ["Pizza", "Pasta", "Salad"]
 }
+
+
+@app.context_processor
+def inject_cart_count():
+    """Make cart item count available in every template."""
+    cart = session.get("cart", [])
+    return {"cart_count": len(cart)}
+
 
 @app.route("/")
 def home():
@@ -36,11 +44,24 @@ def view_cart():
     cart = session.get("cart", [])
     return render_template("cart.html", cart=cart)
 
+@app.route("/orders")
+def view_orders():
+    """Show previous completed orders."""
+    orders = session.get("orders", [])
+    return render_template("orders.html", orders=orders)
+
+
 @app.route("/checkout")
 def checkout():
-    """Clear the cart (no real payment)"""
+    """Save the cart as an order, then clear it."""
+    cart = session.get("cart", [])
+    if cart:
+        orders = session.get("orders", [])
+        orders.append({"items": list(cart)})
+        session["orders"] = orders
+        flash("Thanks for ordering! Your order has been placed.")
     session["cart"] = []
-    return "Thanks for ordering! Your cart is now empty."
+    return redirect(url_for("view_orders"))
     
 if __name__ == "__main__":
     app.run(debug=True)

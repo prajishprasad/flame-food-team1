@@ -1,11 +1,32 @@
 {% extends "base.html" %}
+{% block title %}Cart · FLAME Food{% endblock %}
 {% block content %}
-<h2>Your Cart</h2>
-<ul>
-  {% for entry in cart %}
-    <li>{{ entry.item }} from {{ entry.cafe }}</li>
-  {% endfor %}
-</ul>
+<div class="page-header">
+    <h1>Your cart</h1>
+    <p>{% if cart %}{{ cart|length }} item{{ "s" if cart|length != 1 else "" }} ready to order.{% else %}Nothing here yet — grab something from a cafe.{% endif %}</p>
+</div>
 
-<a href="{{ url_for('checkout') }}">Checkout</a>
+{% if cart %}
+    <ul class="item-list">
+        {% for entry in cart %}
+            <li class="card cart-item">
+                <div class="cart-item-info">
+                    <h3>{{ entry.item }}</h3>
+                    <p>From {{ entry.cafe }}</p>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="actions">
+        <a class="btn" href="{{ url_for('checkout') }}">Checkout</a>
+        <a class="btn btn-secondary" href="{{ url_for('home') }}">Keep browsing</a>
+    </div>
+{% else %}
+    <div class="card empty-state">
+        <h3>Cart is empty</h3>
+        <p>Start with coffee, a burger, or whatever you're craving.</p>
+        <a class="btn" href="{{ url_for('home') }}">Browse cafes</a>
+    </div>
+{% endif %}
 {% endblock %}
